@@ -6,7 +6,7 @@
 /*   By: bamghoug <bamghoug@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/06 17:02:40 by bamghoug          #+#    #+#             */
-/*   Updated: 2020/05/07 13:46:36 by bamghoug         ###   ########.fr       */
+/*   Updated: 2020/05/08 21:55:40 by bamghoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void	looking_for_ones(char *line, int f, int *b, int *a)
 	int i;
 
 	i = f;
-	*b = 0;
-	*a = 0;
+	*b = 1;
+	*a = 1;
 	if (line[f] == '0')
 		error(1);
 	else if (line[f] == ' ')
