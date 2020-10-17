@@ -17,13 +17,21 @@ t_colors *colors, char *file)
 {
 	char	*line;
 	int		fd;
+	int		init;
 
-	if ((s_resol->dimens = (char **)malloc((1000) *
-	sizeof(char*))) == NULL)
+	init = -1;
+	if ((s_resol->dimens = (char **)malloc((200) * sizeof(char*))) == NULL)
 		error(7);
+	while (++init < 200)
+		s_resol->dimens[init] = NULL;
 	if ((fd = open(file, O_RDONLY)) == -1)
 		error(6);
 	while (get_next_line(fd, &line))
+	{
+		search(s_resol, textus, colors, line);
+		free(line);
+	}
+	if (line != NULL)
 	{
 		search(s_resol, textus, colors, line);
 		free(line);

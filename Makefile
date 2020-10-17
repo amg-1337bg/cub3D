@@ -6,7 +6,7 @@
 #    By: bamghoug <bamghoug@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/02 10:12:28 by bamghoug          #+#    #+#              #
-#    Updated: 2020/05/06 18:02:11 by bamghoug         ###   ########.fr        #
+#    Updated: 2020/10/17 16:26:56 by bamghoug         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ input_scan2.c input_scan3.c positions.c main.c
 all : $(NAME)
 
 $(NAME) :
-	gcc $(FLAGS) $(SRC) libft/libft.a -lmlx -lXext -lX11 -lm -lbsd -o $(NAME)
+	gcc $(FLAGS) $(SRC) libft/libft.a -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 clean :
 	rm $(NAME)

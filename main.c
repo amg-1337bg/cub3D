@@ -99,6 +99,7 @@ void	ft_render(t_resol *s_resol, t_texs *s_text)
 	g_t_play.move_speed = 10;
 	mlx_hook(g_win_ptr, 2, 1L << 0, deal_key, s_resol);
 	mlx_hook(g_win_ptr, 3, 1L << 1, stop, s_resol);
+	mlx_hook(g_win_ptr, 17, 1L << 2, red_cross, (void*)0);
 	mlx_loop(g_init_ptr);
 	return ;
 }

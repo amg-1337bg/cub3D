@@ -21,7 +21,7 @@
 # include <stdio.h>
 # include <string.h>
 
-# define BUFFER_SIZE 1000
+# define BUFFER_SIZE 1024
 
 typedef struct	s_data
 {
@@ -237,5 +237,6 @@ void			check_args(char *cub, char *save, int i);
 int				get_resol_val(char *line);
 void			first_last(char *line);
 int				get_color_val(char *line, int i);
+int				red_cross(int key);
 
 #endif

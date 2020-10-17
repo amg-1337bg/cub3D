@@ -6,7 +6,7 @@
 /*   By: bamghoug <bamghoug@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/06 16:58:46 by bamghoug          #+#    #+#             */
-/*   Updated: 2020/05/07 14:56:18 by bamghoug         ###   ########.fr       */
+/*   Updated: 2020/10/17 16:25:09 by bamghoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int		get_color_val(char *line, int i)
 	int res;
 
 	k = 0;
+	res = 0;
 	if (i == 0)
 	{
 		res = ft_atoi(line);

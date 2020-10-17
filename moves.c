@@ -6,7 +6,7 @@
 /*   By: bamghoug <bamghoug@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/18 22:12:48 by bamghoug          #+#    #+#             */
-/*   Updated: 2020/05/08 15:20:47 by bamghoug         ###   ########.fr       */
+/*   Updated: 2020/10/17 16:23:58 by bamghoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,25 @@
 void	change_val(int key, float *a)
 {
 	*a = 0;
-	if (key == 65361)
+	if (key == 123)
 		g_t_play.dir = -1;
-	else if (key == 65363)
+	else if (key == 124)
 		g_t_play.dir = 1;
-	else if (key == 115)
+	else if (key == 1)
 		g_t_play.speed = -1;
-	else if (key == 119)
+	else if (key == 13)
 		g_t_play.speed = 1;
-	else if (key == 97)
+	else if (key == 0)
 	{
 		*a = -90 * (M_PI / 180);
 		g_t_play.speed = 1;
 	}
-	else if (key == 100)
+	else if (key == 2)
 	{
 		*a = 90 * (M_PI / 180);
 		g_t_play.speed = 1;
 	}
-	else if (key == 65307)
+	else if (key == 53)
 	{
 		mlx_clear_window(g_init_ptr, g_win_ptr);
 		mlx_destroy_window(g_init_ptr, g_win_ptr);
@@ -43,9 +43,9 @@ void	change_val(int key, float *a)
 
 int		stop(int key)
 {
-	if (key == 65361 || key == 65363)
+	if (key == 123 || key == 124)
 		g_t_play.dir = 0;
-	else if (key == 115 || key == 119 || key == 97 || key == 100)
+	else if (key == 13 || key == 1 || key == 2 || key == 0)
 		g_t_play.speed = 0;
 	return (0);
 }
@@ -77,4 +77,11 @@ int		deal_key(int key, t_resol *s_resol)
 	}
 	handle_player(s_resol);
 	return (1);
+}
+
+int		red_cross(int key)
+{
+	if (key == 0)
+		exit(0);
+	return (0);
 }

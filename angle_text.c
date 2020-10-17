@@ -29,10 +29,10 @@ int		get_color(int x, int y)
 	if (g_inte.l_r == 0)
 	{
 		if (g_inte.vert_horz == 0)
-			point = g_wtext.img_addr[(g_wtext.w * y) + x];
+			point = (int)g_wtext.img_addr[(g_wtext.w * y) + x];
 		else
 		{
-			point = (g_inte.up_down == 1) ?
+			point = (int)(g_inte.up_down == 1) ?
 			g_ntext.img_addr[(g_ntext.w * y) + x]
 				: g_stext.img_addr[(g_stext.w * y) + x];
 		}
@@ -40,10 +40,10 @@ int		get_color(int x, int y)
 	else
 	{
 		if (g_inte.vert_horz == 0)
-			point = g_etext.img_addr[(g_etext.w * y) + x];
+			point = (int)g_etext.img_addr[(g_etext.w * y) + x];
 		else
 		{
-			point = (g_inte.up_down == 1) ?
+			point = (int)(g_inte.up_down == 1) ?
 			g_ntext.img_addr[(g_ntext.w * y) + x]
 				: g_stext.img_addr[(g_stext.w * y) + x];
 		}

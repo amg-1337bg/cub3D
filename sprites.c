@@ -24,17 +24,15 @@ void	sort(void)
 	int i;
 	int j;
 
-	j = 0;
-	while (j < g_num_sp)
+	j = -1;
+	while (++j < g_num_sp)
 	{
-		i = 0;
-		while (i < g_num_sp)
+		i = -1;
+		while (++i < g_num_sp && (i + 1) < g_num_sp)
 		{
-			if (g_sp[i].dist < g_sp[i + 1].dist)
+			if ((g_sp[i].dist < g_sp[i + 1].dist))
 				swap(i, i + 1);
-			i++;
 		}
-		j++;
 	}
 }
 
