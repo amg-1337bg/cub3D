@@ -12,6 +12,8 @@
 
 NAME = cub3D
 
+LIBFT = libft.a
+
 FLAGS = -Wall -Wextra -Wall
 
 SRC = cub3d_utils.c get_next_line.c get_next_line_utils.c initials.c get_text.c \
@@ -22,12 +24,15 @@ input_scan2.c input_scan3.c positions.c main.c
 all : $(NAME)
 
 $(NAME) :
-	gcc $(FLAGS) $(SRC) libft/libft.a -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	make -C ./libft
+	gcc $(FLAGS) $(SRC) -g -fsanitize=address libft/libft.a -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 clean :
-	rm $(NAME)
+	cd libft && make clean
 
 fclean : clean
+	cd libft && make fclean
+	rm $(NAME)
 
 re : fclean all
 

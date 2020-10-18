@@ -65,11 +65,11 @@ void	find_player_pos(t_resol *s_resol)
 		error(1);
 }
 
-void	mpp(t_data *s_data, float x, float y, int color)
+void	mpp(t_data *s_data, int x, int y, int color)
 {
 	char *point;
 
 	point = s_data->img_add + ((int)y * s_data->ll + (int)x *
 	(s_data->bpp / 8));
-	*(int*)point = color;
+	*(unsigned int*)point = color;
 }

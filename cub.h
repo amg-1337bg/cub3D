@@ -185,7 +185,7 @@ void			get_map(t_resol *s_resol, t_texs *textus,
 t_colors *colors, char *line);
 void			get_configs(t_resol *s_resol, t_texs *textus,
 t_colors *colors, char *file);
-void			mpp(t_data *g_data, float x, float y, int color);
+void			mpp(t_data *g_data, int x, int y, int color);
 int				check_next_pos(double x, double y, t_resol *s_resol);
 void			angle_facing(float angle, int *left_right, int *up_down);
 void			horz_inter(t_resol *s_resol, float angle);
@@ -238,5 +238,6 @@ int				get_resol_val(char *line);
 void			first_last(char *line);
 int				get_color_val(char *line, int i);
 int				red_cross(int key);
+void			ignor_sp_dig(char *str, int *i);
 
 #endif

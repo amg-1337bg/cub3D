@@ -15,6 +15,7 @@
 void	get_resol(t_resol *res, char *line)
 {
 	char	*tmp;
+	char	*tmp1;
 	int		i;
 
 	i = 0;
@@ -23,16 +24,24 @@ void	get_resol(t_resol *res, char *line)
 	while (tmp[i] != ' ' && tmp[i] != '\0')
 		i++;
 	res->x = get_resol_val(&tmp[i]);
-	while (tmp[i] == ' ' && tmp[i] != '\0')
-		i++;
-	while (ft_isdigit(tmp[i]) == 1 && tmp[i] != '\0')
-		i++;
+	ignor_sp_dig(tmp, &i);
 	res->y = get_resol_val(&tmp[i]);
-	if (res->x > 1440)
-		res->x = 1440;
-	if (res->y > 1020)
-		res->y = 1020;
+	res->x = (res->x > 1600) ? 1600 : res->x;
+	res->y = (res->y > 900) ? 900 : res->y;
+	ignor_sp_dig(tmp, &i);
+	tmp1 = ft_strdup(&tmp[i]);
+	tmp1 = ft_strtrim(tmp1, " 	");
+	if (*tmp1 != '\0')
+		error(2);
 	free(tmp);
+}
+
+void	ignor_sp_dig(char *str, int *i)
+{
+	while (str[*i] == ' ' && str[*i] != '\0')
+		(*i)++;
+	while (ft_isdigit(str[*i]) == 1 && str[*i] != '\0')
+		(*i)++;
 }
 
 int		get_resol_val(char *line)

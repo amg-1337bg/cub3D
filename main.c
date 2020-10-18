@@ -45,8 +45,8 @@ void	draw(t_resol *s_resol, float x1, float y_begin, int y1)
 	wall_height = g_walls.wallheight;
 	if (g_walls.y_begin < 0)
 		g_walls.y_begin = 0;
-	while (y1 < g_walls.y_begin)
-		mpp(&g_data, x1, y1++, g_colors.c_rgb);
+	while (++y1 < g_walls.y_begin)
+		mpp(&g_data, x1, y1, g_colors.c_rgb);
 	if (g_inte.vert_horz == 0)
 		offsetx = (int)remainder(g_inte.v_yint, s_resol->y_tile);
 	else
@@ -71,14 +71,13 @@ void	handle_player(t_resol *s_resol)
 
 	fov = 60 * (M_PI / 180);
 	angle = g_t_play.pov - (fov / 2);
-	x1 = 0;
+	x1 = -1;
 	update_dist(angle);
-	while (x1 < s_resol->x)
+	while (++x1 < s_resol->x)
 	{
 		calculations(s_resol, angle, fov);
-		draw(s_resol, x1, g_walls.y_begin, 0);
+		draw(s_resol, x1, g_walls.y_begin, -1);
 		angle += fov / s_resol->x;
-		x1++;
 	}
 	sprites(s_resol);
 	mlx_put_image_to_window(g_init_ptr, g_win_ptr, g_data.img, 0, 0);
