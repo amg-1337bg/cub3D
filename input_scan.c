@@ -18,6 +18,8 @@ void	get_resol(t_resol *res, char *line)
 	char	*tmp1;
 	int		i;
 
+	if (res->x > 0 && res->y > 0)
+		error(2);
 	i = 0;
 	tmp = ft_strdup(line);
 	tmp = ft_strtrim(tmp, "	 ");
@@ -26,8 +28,8 @@ void	get_resol(t_resol *res, char *line)
 	res->x = get_resol_val(&tmp[i]);
 	ignor_sp_dig(tmp, &i);
 	res->y = get_resol_val(&tmp[i]);
-	res->x = (res->x > 1600) ? 1600 : res->x;
-	res->y = (res->y > 900) ? 900 : res->y;
+	res->x = (res->x > 2048) ? 2048 : res->x;
+	res->y = (res->y > 1152) ? 1152 : res->y;
 	ignor_sp_dig(tmp, &i);
 	tmp1 = ft_strdup(&tmp[i]);
 	tmp1 = ft_strtrim(tmp1, " 	");

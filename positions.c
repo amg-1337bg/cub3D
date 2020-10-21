@@ -61,7 +61,7 @@ void	find_player_pos(t_resol *s_resol)
 				sp_index(j, i);
 		}
 	}
-	if (g_t_play.pov <= 0)
+	if (g_t_play.pov < 0)
 		error(1);
 }
 

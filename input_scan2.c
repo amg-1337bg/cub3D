@@ -19,9 +19,17 @@ void	get_colors(t_colors *colors, char *line)
 	tmp = ft_strdup(line);
 	tmp = ft_strtrim(tmp, "	 ");
 	if (ft_strnstr(tmp, "F", 1) != NULL)
+	{
+		if (colors->f_rgb != -1)
+			error(4);
 		get_f_colors(colors, tmp);
+	}
 	else if (ft_strnstr(tmp, "C", 1) != NULL)
+	{
+		if (colors->c_rgb != -1)
+			error(4);
 		get_c_colors(colors, tmp);
+	}
 	free(tmp);
 }
 
@@ -30,8 +38,7 @@ void	get_f_colors(t_colors *colors, char *line)
 	int i;
 
 	i = 0;
-	while ((line[i] >= 65 && line[i] <= 90) || line[i] == 32
-			|| line[i] == 9)
+	while (line[i] == 'F' || line[i] == 32 || line[i] == 9)
 		i++;
 	colors->f_red = get_color_val(&line[i], 0);
 	while (line[i] != ',' && line[i] != '\0')
@@ -50,16 +57,19 @@ void	get_c_colors(t_colors *colors, char *line)
 	int i;
 
 	i = 0;
-	while ((line[i] >= 65 && line[i] <= 90) || line[i] == 32
+	while (line[i] == 'C' || line[i] == 32
 			|| line[i] == 9)
 		i++;
+	check_forme(&line[i], 0);
 	colors->c_red = get_color_val(&line[i], 0);
 	while (line[i] != ',' && line[i] != '\0')
 		i++;
+	check_forme(&line[i + 1], 0);
 	colors->c_green = get_color_val(&line[i], 1);
 	i++;
 	while (line[i] != ',' && line[i] != '\0')
 		i++;
+	check_forme(&line[i + 1], 1);
 	colors->c_blue = get_color_val(&line[i], 1);
 	colors->c_rgb = ((colors->c_red * 65536) + (colors->c_green * 256)
 			+ colors->c_blue);
@@ -90,4 +100,17 @@ int		get_color_val(char *line, int i)
 		}
 	}
 	return (res);
+}
+
+void	check_forme(char *st, int i)
+{
+	int j;
+
+	j = 0;
+	while ((ft_isdigit(st[j]) == 1 || st[j] == 32) && st[j] != '\0')
+		j++;
+	if (st[j] != ',' && i == 0)
+		error(4);
+	else if (st[j] != '\0' && i == 1)
+		error(4);
 }

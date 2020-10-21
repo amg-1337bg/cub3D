@@ -19,25 +19,27 @@ void	get_textures(t_texs *textus, char *line)
 	tmp = ft_strdup(line);
 	tmp = ft_strtrim(tmp, " ");
 	if (ft_strnstr(tmp, "NO", 2) != NULL)
-		textus->no_tex = get_path(tmp);
+		textus->no_tex = get_path(tmp, textus->no_tex);
 	else if (ft_strnstr(tmp, "SO", 2) != NULL)
-		textus->so_tex = get_path(tmp);
+		textus->so_tex = get_path(tmp, textus->so_tex);
 	else if (ft_strnstr(tmp, "WE", 2) != NULL)
-		textus->we_tex = get_path(tmp);
+		textus->we_tex = get_path(tmp, textus->we_tex);
 	else if (ft_strnstr(tmp, "EA", 2) != NULL)
-		textus->ea_tex = get_path(tmp);
+		textus->ea_tex = get_path(tmp, textus->ea_tex);
 	else if (ft_strnstr(tmp, "S", 1) != NULL)
-		textus->sp_tex = get_path(tmp);
+		textus->sp_tex = get_path(tmp, textus->sp_tex);
 	free(tmp);
 }
 
-char	*get_path(char *line)
+char	*get_path(char *line, char *texture)
 {
 	int		i;
 	char	*res;
 
 	i = 0;
 	res = NULL;
+	if (texture != NULL)
+		error(3);
 	while (line[i] != '\0')
 	{
 		if ((line[i] >= 65 && line[i] <= 90) || line[i] == 32 ||

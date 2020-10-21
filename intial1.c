@@ -17,9 +17,11 @@ void	initial_colors(t_colors *colors)
 	colors->c_blue = -1;
 	colors->c_green = -1;
 	colors->c_red = -1;
+	colors->c_rgb = -1;
 	colors->f_blue = -1;
 	colors->f_green = -1;
 	colors->f_red = -1;
+	colors->f_rgb = -1;
 }
 
 void	initial_text(t_texs *text)

@@ -25,7 +25,7 @@ all : $(NAME)
 
 $(NAME) :
 	make -C ./libft
-	gcc $(FLAGS) $(SRC) -g -fsanitize=address libft/libft.a -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	gcc $(FLAGS) $(SRC) libft/libft.a -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 clean :
 	cd libft && make clean

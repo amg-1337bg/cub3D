@@ -34,7 +34,7 @@ int		main(int argc, char **argv)
 	return (0);
 }
 
-void	draw(t_resol *s_resol, float x1, float y_begin, int y1)
+void	draw(t_resol *s_resol, int x1, float y_begin, int y1)
 {
 	int		offsetx;
 	int		offsety;
@@ -68,6 +68,7 @@ void	handle_player(t_resol *s_resol)
 	float	angle;
 	int		x1;
 	float	fov;
+	int		y1;
 
 	fov = 60 * (M_PI / 180);
 	angle = g_t_play.pov - (fov / 2);
@@ -75,8 +76,9 @@ void	handle_player(t_resol *s_resol)
 	update_dist(angle);
 	while (++x1 < s_resol->x)
 	{
+		y1 = -1;
 		calculations(s_resol, angle, fov);
-		draw(s_resol, x1, g_walls.y_begin, -1);
+		draw(s_resol, x1, g_walls.y_begin, y1);
 		angle += fov / s_resol->x;
 	}
 	sprites(s_resol);
@@ -86,13 +88,15 @@ void	handle_player(t_resol *s_resol)
 
 void	ft_render(t_resol *s_resol, t_texs *s_text)
 {
-	g_sp = (t_sp*)malloc((g_num_sp) * sizeof(t_sp));
-	g_data.img = mlx_new_image(g_init_ptr, s_resol->x, s_resol->y);
-	g_data.img_add = mlx_get_data_addr(g_data.img, &g_data.bpp,
-	&g_data.ll, &g_data.endian);
+	if ((g_sp = (t_sp*)malloc((g_num_sp) * sizeof(t_sp))) == NULL
+	|| (g_raydist = (float*)malloc(s_resol->x * sizeof(float))) == NULL)
+		error(7);
 	handle_textures(s_text);
 	find_player_pos(s_resol);
 	initial_sp(s_resol);
+	g_data.img = mlx_new_image(g_init_ptr, s_resol->x, s_resol->y);
+	g_data.img_add = mlx_get_data_addr(g_data.img, &g_data.bpp,
+	&g_data.ll, &g_data.endian);
 	handle_player(s_resol);
 	g_t_play.rot_speed = 2.5 * M_PI / 180;
 	g_t_play.move_speed = 10;

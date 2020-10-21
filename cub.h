@@ -153,7 +153,7 @@ t_colors		g_colors;
 
 int				g_first_map;
 int				g_dim_ind;
-float			g_raydist[1440];
+float			*g_raydist;
 int				g_counter;
 int				g_empty_line;
 int				g_on;
@@ -173,7 +173,7 @@ void			initial_errors(void);
 void			initial_colors(t_colors *colors);
 void			initial_text(t_texs *text);
 void			get_resol(t_resol *res, char *line);
-char			*get_path(char *line);
+char			*get_path(char *line, char *texture);
 void			get_textures(t_texs *textus, char *line);
 void			get_f_colors(t_colors *colors, char *line);
 void			get_c_colors(t_colors *colors, char *line);
@@ -202,7 +202,7 @@ void			sprites(t_resol *s_resol);
 void			get_sp_coor(t_sp *sp, float angle);
 void			swap(int f, int t);
 void			sort(void);
-void			draw(t_resol *s_resol, float x1, float y_begin, int y1);
+void			draw(t_resol *s_resol, int x1, float y_begin, int y1);
 void			handle_player(t_resol *s_resol);
 int				check_next_pos(double x, double y, t_resol *s_resol);
 int				deal_key(int key, t_resol *s_resol);
@@ -239,5 +239,7 @@ void			first_last(char *line);
 int				get_color_val(char *line, int i);
 int				red_cross(int key);
 void			ignor_sp_dig(char *str, int *i);
+void			check_forme(char *st, int i);
+void			allocation(void);
 
 #endif

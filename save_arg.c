@@ -65,6 +65,13 @@ void	render_for_saving(t_resol *s_resol)
 	g_counter = 0;
 }
 
+void	allocation(void)
+{
+	if ((g_sp = (t_sp*)malloc((g_num_sp) * sizeof(t_sp))) == NULL
+	|| (g_raydist = (float*)malloc(g_resol.x * sizeof(float))) == NULL)
+		error(7);
+}
+
 void	bmp_image(t_resol s_resol, t_texs *s_text)
 {
 	int				fd;
@@ -72,11 +79,11 @@ void	bmp_image(t_resol s_resol, t_texs *s_text)
 	int				pad;
 	unsigned char	bmppad[3];
 
-	bmppad[0] = (unsigned char)0;
-	bmppad[1] = (unsigned char)0;
-	bmppad[2] = (unsigned char)0;
-	g_sp = (t_sp*)malloc((g_num_sp) * sizeof(t_sp));
+	x = -1;
+	while (++x < 3)
+		bmppad[x] = (unsigned char)0;
 	fd = open("screen.bmp", O_WRONLY | O_CREAT, S_IRWXU, S_IRWXG);
+	allocation();
 	create_head(s_resol, fd, &pad);
 	handle_textures(s_text);
 	find_player_pos(&s_resol);

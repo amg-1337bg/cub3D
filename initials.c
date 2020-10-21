@@ -46,17 +46,18 @@ void	initial_errors(void)
 void	initial_configs(void)
 {
 	g_resol.dimens = NULL;
-	g_resol.x = -1;
+	g_resol.x = 0;
 	g_resol.x_map = -1;
-	g_resol.y = -1;
+	g_resol.y = 0;
 	g_resol.y_map = -1;
 	g_resol.x_tile = 64;
 	g_resol.y_tile = 64;
+	g_t_play.pov = -1;
 }
 
 void	initial_pov(char c)
 {
-	if (g_t_play.pov > 0)
+	if (g_t_play.pov >= 0)
 		error(1);
 	if (c == 'N')
 		g_t_play.pov = 270 * (M_PI / 180);
