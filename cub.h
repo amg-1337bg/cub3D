@@ -161,6 +161,7 @@ int				g_num_sp;
 int				g_sp_index;
 void			*g_init_ptr;
 void			*g_win_ptr;
+int				g_mheight;
 
 int				check(char *string);
 char			*before_n(char *s);
@@ -181,8 +182,7 @@ void			get_colors(t_colors *colors, char *line);
 void			check_first_map(char *line);
 void			error(int i);
 char			*line_filter(char *line);
-void			get_map(t_resol *s_resol, t_texs *textus,
-t_colors *colors, char *line);
+void			get_map(t_resol *s_resol, char *line);
 void			get_configs(t_resol *s_resol, t_texs *textus,
 t_colors *colors, char *file);
 void			mpp(t_data *g_data, int x, int y, int color);
@@ -241,5 +241,9 @@ int				red_cross(int key);
 void			ignor_sp_dig(char *str, int *i);
 void			check_forme(char *st, int i);
 void			allocation(void);
+void			map_hei(t_resol *s_resol, t_texs *textus,
+t_colors *colors, char *line);
+void			search_map(t_resol *s_resol, char *line);
+void			get_the_map(t_resol *s_resol, char *file);
 
 #endif

@@ -78,9 +78,7 @@ void	space_looking(t_resol *s_resol, int i, int f, int l)
 			looking_for_ones(s_resol->dimens[i + 1], f, &before, &after);
 			if (before != 1 || after != 1)
 				error(1);
-			while (s_resol->dimens[i][f] != '\0' &&
-			s_resol->dimens[i][f] == ' ')
-				f++;
+			f++;
 		}
 		else
 			f++;
@@ -99,9 +97,7 @@ void	space_back_looking(t_resol *s_resol, int i, int f, int l)
 			looking_for_ones(s_resol->dimens[i - 1], f, &before, &after);
 			if (before != 1 || after != 1)
 				error(1);
-			while (s_resol->dimens[i][f] != '\0' &&
-			s_resol->dimens[i][f] == ' ')
-				f++;
+			f++;
 		}
 		else
 			f++;

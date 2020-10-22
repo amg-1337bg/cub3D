@@ -20,10 +20,6 @@ t_colors *colors, char *file)
 	int		init;
 
 	init = -1;
-	if ((s_resol->dimens = (char **)malloc((200) * sizeof(char*))) == NULL)
-		error(7);
-	while (++init < 200)
-		s_resol->dimens[init] = NULL;
 	if ((fd = open(file, O_RDONLY)) == -1)
 		error(6);
 	while (get_next_line(fd, &line))
@@ -36,6 +32,10 @@ t_colors *colors, char *file)
 		search(s_resol, textus, colors, line);
 		free(line);
 	}
+	if (!(s_resol->dimens = (char **)malloc((g_mheight + 1) * sizeof(char*))))
+		error(7);
+	s_resol->dimens[g_mheight] = NULL;
+	get_the_map(s_resol, file);
 	check_colors(colors);
 	check_first_map(s_resol->dimens[--g_dim_ind]);
 	check_map(s_resol);
@@ -61,7 +61,7 @@ void	search(t_resol *s_resol, t_texs *textus, t_colors *colors, char *line)
 			else if ((line[i] == 'F' || line[i] == 'C') && line[i + 1] == ' ')
 				get_colors(colors, line);
 			else if (line[i] == '1' || line[i] == '0')
-				get_map(s_resol, textus, colors, line);
+				map_hei(s_resol, textus, colors, line);
 			else
 				error(7);
 			return ;

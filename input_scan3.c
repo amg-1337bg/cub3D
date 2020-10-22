@@ -12,13 +12,8 @@
 
 #include "cub.h"
 
-void	get_map(t_resol *s_resol, t_texs *textus, t_colors *colors, char *line)
+void	get_map(t_resol *s_resol, char *line)
 {
-	if (g_on == 0)
-		check_others(s_resol, textus, colors, &g_on);
-	if (g_empty_line == 1 && g_on == 1)
-		error(1);
-	first_last(line);
 	s_resol->dimens[g_dim_ind++] = line_filter(line);
 	if (s_resol->x_map == -1)
 		s_resol->x_map = ft_strlen(s_resol->dimens[g_dim_ind - 1]);
@@ -81,4 +76,33 @@ char	*line_filter(char *line)
 	}
 	res = ft_strdup(line);
 	return (res);
+}
+
+void	map_hei(t_resol *s_resol, t_texs *textus, t_colors *colors, char *line)
+{
+	if (g_on == 0)
+		check_others(s_resol, textus, colors, &g_on);
+	if (g_empty_line == 1 && g_on == 1)
+		error(1);
+	first_last(line);
+	g_mheight++;
+}
+
+void	get_the_map(t_resol *s_resol, char *file)
+{
+	char	*line;
+	int		fd;
+
+	if ((fd = open(file, O_RDONLY)) == -1)
+		error(6);
+	while (get_next_line(fd, &line))
+	{
+		search_map(s_resol, line);
+		free(line);
+	}
+	if (line != NULL)
+	{
+		search_map(s_resol, line);
+		free(line);
+	}
 }
