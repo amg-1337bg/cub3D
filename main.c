@@ -38,7 +38,7 @@ void	draw(t_resol *s_resol, int x1, float y_begin, int y1)
 {
 	int		offsetx;
 	int		offsety;
-	float	begin;
+	int		begin;
 	float	wall_height;
 
 	begin = y_begin;
@@ -48,13 +48,13 @@ void	draw(t_resol *s_resol, int x1, float y_begin, int y1)
 	while (++y1 < g_walls.y_begin)
 		mpp(&g_data, x1, y1, g_colors.c_rgb);
 	if (g_inte.vert_horz == 0)
-		offsetx = (int)remainder(g_inte.v_yint, s_resol->y_tile);
+		offsetx = (int)g_inte.v_yint % s_resol->y_tile;
 	else
-		offsetx = (int)remainder(g_inte.h_xint, s_resol->y_tile);
+		offsetx = (int)g_inte.h_xint % s_resol->y_tile;
 	while (g_walls.wallheight >= 0 && g_walls.y_begin < s_resol->y)
 	{
-		offsety = (g_walls.y_begin - begin) * ((float)g_ntext.h / wall_height);
-		offsety += ((offsetx < 0) ? 1 : 0);
+		offsety = (int)((g_walls.y_begin - begin) * ((float)g_ntext.h / wall_height));
+		offsety -= ((offsety > 63) ? 1 : 0);
 		mpp(&g_data, x1, g_walls.y_begin, get_color(offsetx, offsety));
 		g_walls.y_begin++;
 		g_walls.wallheight--;
@@ -98,7 +98,7 @@ void	ft_render(t_resol *s_resol, t_texs *s_text)
 	g_data.img_add = mlx_get_data_addr(g_data.img, &g_data.bpp,
 	&g_data.ll, &g_data.endian);
 	handle_player(s_resol);
-	g_t_play.rot_speed = 3.5 * M_PI / 180;
+	g_t_play.rot_speed = 2.5 * M_PI / 180;
 	g_t_play.move_speed = 15;
 	mlx_hook(g_win_ptr, 2, 1L << 0, deal_key, s_resol);
 	mlx_hook(g_win_ptr, 3, 1L << 1, stop, s_resol);

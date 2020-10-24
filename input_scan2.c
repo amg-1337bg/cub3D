@@ -40,13 +40,16 @@ void	get_f_colors(t_colors *colors, char *line)
 	i = 0;
 	while (line[i] == 'F' || line[i] == 32 || line[i] == 9)
 		i++;
+	check_forme(&line[i], 0);
 	colors->f_red = get_color_val(&line[i], 0);
 	while (line[i] != ',' && line[i] != '\0')
 		i++;
+	check_forme(&line[i + 1], 0);
 	colors->f_green = get_color_val(&line[i], 1);
 	i++;
 	while (line[i] != ',' && line[i] != '\0')
 		i++;
+	check_forme(&line[i + 1], 1);
 	colors->f_blue = get_color_val(&line[i], 1);
 	colors->f_rgb = ((colors->f_red * 65536) + (colors->f_green * 256)
 			+ colors->f_blue);
@@ -57,8 +60,7 @@ void	get_c_colors(t_colors *colors, char *line)
 	int i;
 
 	i = 0;
-	while (line[i] == 'C' || line[i] == 32
-			|| line[i] == 9)
+	while (line[i] == 'C' || line[i] == 32 || line[i] == 9)
 		i++;
 	check_forme(&line[i], 0);
 	colors->c_red = get_color_val(&line[i], 0);

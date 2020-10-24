@@ -12,20 +12,24 @@
 
 #include "cub.h"
 
-int		check_next_pos(double x, double y, t_resol *s_resol)
+int		check_next_pos(float x, float y, t_resol *s_resol)
 {
 	int mapx;
 	int mapy;
+	int tmp;
 
+	//printf ("x = %f and y = %f\n", x, y);
 	mapx = (int)(x / s_resol->x_tile);
 	mapy = (int)(y / s_resol->y_tile);
+	if (mapx > (tmp = ft_strlen(s_resol->dimens[mapy])))
+		mapx = tmp;
 	if (s_resol->dimens[mapy][mapx] == '0' ||
 		s_resol->dimens[mapy][mapx] == 'N' ||
 		s_resol->dimens[mapy][mapx] == 'S' ||
 		s_resol->dimens[mapy][mapx] == 'W' ||
 		s_resol->dimens[mapy][mapx] == 'E')
 		return (0);
-	if (s_resol->dimens[mapy][mapx] == '2')
+	else if (s_resol->dimens[mapy][mapx] == '2')
 		return (2);
 	return (1);
 }

@@ -186,7 +186,7 @@ void			get_map(t_resol *s_resol, char *line);
 void			get_configs(t_resol *s_resol, t_texs *textus,
 t_colors *colors, char *file);
 void			mpp(t_data *g_data, int x, int y, int color);
-int				check_next_pos(double x, double y, t_resol *s_resol);
+int				check_next_pos(float x, float y, t_resol *s_resol);
 void			angle_facing(float angle, int *left_right, int *up_down);
 void			horz_inter(t_resol *s_resol, float angle);
 void			vert_inter(t_resol *s_resol, float angle);
@@ -204,7 +204,6 @@ void			swap(int f, int t);
 void			sort(void);
 void			draw(t_resol *s_resol, int x1, float y_begin, int y1);
 void			handle_player(t_resol *s_resol);
-int				check_next_pos(double x, double y, t_resol *s_resol);
 int				deal_key(int key, t_resol *s_resol);
 void			find_player_pos(t_resol *s_resol);
 int				stop(int key);

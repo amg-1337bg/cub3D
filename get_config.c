@@ -17,9 +17,7 @@ t_colors *colors, char *file)
 {
 	char	*line;
 	int		fd;
-	int		init;
 
-	init = -1;
 	if ((fd = open(file, O_RDONLY)) == -1)
 		error(6);
 	while (get_next_line(fd, &line))

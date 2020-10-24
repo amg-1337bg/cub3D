@@ -50,7 +50,7 @@ void	vert_inter(t_resol *s_resol, float angle)
 g_inte.v_xint <= (s_resol->x_map * s_resol->x_tile) &&
 g_inte.v_yint <= (s_resol->y_map * s_resol->y_tile))
 	{
-		if (check_next_pos(g_inte.v_xint - ((g_inte.l_r == 0) ? 1 : 0),
+		if (check_next_pos(floor(g_inte.v_xint - ((g_inte.l_r == 0) ? 1 : 0)),
 g_inte.v_yint, s_resol) == 1)
 			break ;
 		g_inte.v_xint += g_inte.v_xstep;
