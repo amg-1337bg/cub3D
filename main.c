@@ -53,8 +53,8 @@ void	draw(t_resol *s_resol, int x1, float y_begin, int y1)
 		offsetx = (int)g_inte.h_xint % s_resol->y_tile;
 	while (g_walls.wallheight >= 0 && g_walls.y_begin < s_resol->y)
 	{
-		offsety = (int)((g_walls.y_begin - begin) * ((float)g_ntext.h / wall_height));
-		offsety -= ((offsety > 63) ? 1 : 0);
+		offsety = ((g_walls.y_begin - begin) * ((float)g_ntext.h / wall_height));
+		offsety -= (int)((offsety > 63) ? 1 : 0);
 		mpp(&g_data, x1, g_walls.y_begin, get_color(offsetx, offsety));
 		g_walls.y_begin++;
 		g_walls.wallheight--;
@@ -73,7 +73,7 @@ void	handle_player(t_resol *s_resol)
 	fov = 60 * (M_PI / 180);
 	angle = g_t_play.pov - (fov / 2);
 	x1 = -1;
-	update_dist(angle);
+	update_dist();
 	while (++x1 < s_resol->x)
 	{
 		y1 = -1;

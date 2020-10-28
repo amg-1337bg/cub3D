@@ -18,7 +18,6 @@ int		check_next_pos(float x, float y, t_resol *s_resol)
 	int mapy;
 	int tmp;
 
-	//printf ("x = %f and y = %f\n", x, y);
 	mapx = (int)(x / s_resol->x_tile);
 	mapy = (int)(y / s_resol->y_tile);
 	if (mapx > (tmp = ft_strlen(s_resol->dimens[mapy])))

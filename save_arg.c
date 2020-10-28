@@ -53,7 +53,7 @@ void	render_for_saving(t_resol *s_resol)
 	g_data.img = mlx_new_image(g_init_ptr, s_resol->x, s_resol->y);
 	g_data.img_add = mlx_get_data_addr(g_data.img, &g_data.bpp
 	, &g_data.ll, &g_data.endian);
-	update_dist(angle);
+	update_dist();
 	while (x1 < s_resol->x)
 	{
 		calculations(s_resol, angle, fov);

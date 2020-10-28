@@ -12,11 +12,10 @@
 
 #include "cub.h"
 
-void	get_sp_coor(t_sp *sp, float angle)
+void	get_sp_coor(t_sp *sp)
 {
 	sp->dist = sqrt(pow((sp->x - g_t_play.x), 2) +
 	pow((sp->y - g_t_play.y), 2));
-	sp->dist *= cos(g_t_play.pov - angle);
 }
 
 void	sort(void)
@@ -36,13 +35,13 @@ void	sort(void)
 	}
 }
 
-void	update_dist(float angle)
+void	update_dist(void)
 {
 	int i;
 
 	i = -1;
 	while (++i < g_num_sp)
-		get_sp_coor(&g_sp[i], angle);
+		get_sp_coor(&g_sp[i]);
 	sort();
 }
 
