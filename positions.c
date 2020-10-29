@@ -20,6 +20,8 @@ int		check_next_pos(float x, float y, t_resol *s_resol)
 
 	mapx = (int)(x / s_resol->x_tile);
 	mapy = (int)(y / s_resol->y_tile);
+	if (mapy >= g_mheight)
+		mapy = g_mheight - 1;
 	if (mapx > (tmp = ft_strlen(s_resol->dimens[mapy])))
 		mapx = tmp;
 	if (s_resol->dimens[mapy][mapx] == '0' ||

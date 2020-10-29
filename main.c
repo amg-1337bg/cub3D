@@ -53,8 +53,8 @@ void	draw(t_resol *s_resol, int x1, float y_begin, int y1)
 		offsetx = (int)g_inte.h_xint % s_resol->y_tile;
 	while (g_walls.wallheight >= 0 && g_walls.y_begin < s_resol->y)
 	{
-		offsety = ((g_walls.y_begin - begin) * ((float)g_ntext.h / wall_height));
-		offsety -= (int)((offsety > 63) ? 1 : 0);
+		offsety = ((g_walls.y_begin - begin) * (g_ntext.h / wall_height));
+		offsety -= (int)((offsety >= g_ntext.w) ? 1 : 0);
 		mpp(&g_data, x1, g_walls.y_begin, get_color(offsetx, offsety));
 		g_walls.y_begin++;
 		g_walls.wallheight--;
@@ -92,6 +92,8 @@ void	ft_render(t_resol *s_resol, t_texs *s_text)
 	|| (g_raydist = (float*)malloc(s_resol->x * sizeof(float))) == NULL)
 		error(7);
 	handle_textures(s_text);
+	s_resol->x_tile = g_ntext.w;
+	s_resol->y_tile = g_ntext.h;
 	find_player_pos(s_resol);
 	initial_sp(s_resol);
 	g_data.img = mlx_new_image(g_init_ptr, s_resol->x, s_resol->y);

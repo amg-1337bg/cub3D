@@ -17,6 +17,7 @@ void	calculations(t_resol *s_resol, float angle, float fov)
 	normalize_angle(&angle);
 	g_t_play.pov_hit = cast(s_resol, angle);
 	g_raydist[g_counter++] = g_t_play.pov_hit;
+	g_t_play.pov_hit *= cos(g_t_play.pov - angle);
 	g_walls.dpp = (s_resol->x / 2) / tan(fov / 2);
 	g_walls.wallheight = (s_resol->x_tile / g_t_play.pov_hit) * g_walls.dpp;
 	g_walls.y_begin = (s_resol->y / 2) - (g_walls.wallheight / 2);
@@ -58,7 +59,6 @@ g_inte.v_yint, s_resol) == 1)
 	}
 	g_inte.v_dist = sqrt(pow((g_inte.v_xint - g_t_play.x), 2) +
 pow((g_inte.v_yint - g_t_play.y), 2));
-	g_inte.v_dist *= cos(g_t_play.pov - angle);
 }
 
 void	horz_inter(t_resol *s_resol, float angle)
@@ -87,5 +87,4 @@ g_inte.h_yint <= (s_resol->y_map * s_resol->y_tile))
 	}
 	g_inte.h_dist = sqrt(pow((g_inte.h_xint - g_t_play.x), 2) +
 pow((g_inte.h_yint - g_t_play.y), 2));
-	g_inte.h_dist *= cos(g_t_play.pov - angle);
 }

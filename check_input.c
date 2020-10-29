@@ -45,6 +45,7 @@ void	looking_for_ones(char *line, int f, int *b, int *a)
 	i = f;
 	*b = 1;
 	*a = 1;
+	f = (f > (int)ft_strlen(line)) ? ft_strlen(line) : f;
 	if (line[f] == '0')
 		error(1);
 	else if (line[f] == ' ')

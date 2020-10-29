@@ -50,8 +50,8 @@ void	initial_configs(void)
 	g_resol.x_map = -1;
 	g_resol.y = 0;
 	g_resol.y_map = -1;
-	g_resol.x_tile = 64;
-	g_resol.y_tile = 64;
+	g_resol.x_tile = 32;
+	g_resol.y_tile = 32;
 	g_t_play.pov = -1;
 }
 

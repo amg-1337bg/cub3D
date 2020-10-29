@@ -35,6 +35,7 @@ void	get_resol(t_resol *res, char *line)
 	tmp1 = ft_strtrim(tmp1, " 	");
 	if (*tmp1 != '\0')
 		error(2);
+	free(tmp1);
 	free(tmp);
 }
 
