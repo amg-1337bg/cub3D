@@ -26,6 +26,7 @@ int		main(int argc, char **argv)
 		get_configs(&g_resol, &s_textus, &g_colors, argv[1]);
 		g_init_ptr = mlx_init();
 		g_win_ptr = mlx_new_window(g_init_ptr, g_resol.x, g_resol.y, "cub3d");
+		//printf("x = %d y = %d\n", x, y);
 		if (argc == 3)
 			bmp_image(g_resol, &s_textus);
 		ft_render(&g_resol, &s_textus);
@@ -100,8 +101,8 @@ void	ft_render(t_resol *s_resol, t_texs *s_text)
 	g_data.img_add = mlx_get_data_addr(g_data.img, &g_data.bpp,
 	&g_data.ll, &g_data.endian);
 	handle_player(s_resol);
-	g_t_play.rot_speed = 2.5 * M_PI / 180;
-	g_t_play.move_speed = 15;
+	g_t_play.rot_speed = 8 * M_PI / 180;
+	g_t_play.move_speed = 30;
 	mlx_hook(g_win_ptr, 2, 1L << 0, deal_key, s_resol);
 	mlx_hook(g_win_ptr, 3, 1L << 1, stop, s_resol);
 	mlx_hook(g_win_ptr, 17, 1L << 2, red_cross, (void*)0);

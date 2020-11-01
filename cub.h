@@ -163,6 +163,7 @@ void			*g_init_ptr;
 void			*g_win_ptr;
 int				g_mheight;
 
+int				mlx_get_screen_size(void *mlx_ptr, int *sizex, int *sizey);
 int				check(char *string);
 char			*before_n(char *s);
 char			*after_n(char *s);

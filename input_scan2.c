@@ -97,6 +97,8 @@ int		get_color_val(char *line, int i)
 		else
 		{
 			res = ft_atoi(&line[++k]);
+			while (ft_isdigit(line[k]) != 1 && line[k] != '\0')
+				k++;
 			if ((res == 0 && line[k] != '0') || (res < 0 && res > 255))
 				error(4);
 		}

@@ -23,7 +23,7 @@ input_scan2.c input_scan3.c positions.c main.c get_the_map.c
 
 all : $(NAME) 
 
-$(NAME) : $(SRC)
+$(NAME) : Makefile $(SRC)
 	make -C ./libft
 	gcc $(FLAGS) $(SRC) libft/libft.a -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 

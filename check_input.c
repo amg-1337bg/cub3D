@@ -46,7 +46,7 @@ void	looking_for_ones(char *line, int f, int *b, int *a)
 	*b = 1;
 	*a = 1;
 	f = (f > (int)ft_strlen(line)) ? ft_strlen(line) : f;
-	if (line[f] == '0')
+	if (line[f] == '0' || line[f] == '2')
 		error(1);
 	else if (line[f] == ' ')
 	{
@@ -71,18 +71,28 @@ void	space_looking(t_resol *s_resol, int i, int f, int l)
 {
 	int before;
 	int after;
+	int j;
+	int k;
 
 	while (f <= l)
 	{
 		if (s_resol->dimens[i][f] == ' ')
 		{
+			j = f;
+			k = f;
+			while (j > 0 && s_resol->dimens[i][j] == ' ')
+				j--;
+			while (s_resol->dimens[i][k] != '\0' &&
+			s_resol->dimens[i][k] == ' ')
+				k++;
+			if (s_resol->dimens[i][j] != '1' || s_resol->dimens[i][k] != '1')
+				error(1);
 			looking_for_ones(s_resol->dimens[i + 1], f, &before, &after);
 			if (before != 1 || after != 1)
 				error(1);
 			f++;
 		}
-		else
-			f++;
+		f++;
 	}
 }
 
