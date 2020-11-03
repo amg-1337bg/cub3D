@@ -14,6 +14,8 @@
 
 int		main(int argc, char **argv)
 {
+	int		x;
+	int		y;
 	t_texs	s_textus;
 
 	initial_interc(&g_colors, &s_textus);
@@ -25,8 +27,10 @@ int		main(int argc, char **argv)
 			check_args(argv[1], argv[2], 2);
 		get_configs(&g_resol, &s_textus, &g_colors, argv[1]);
 		g_init_ptr = mlx_init();
+		mlx_get_screen_size(g_init_ptr, &x, &y);
+		g_resol.x = (g_resol.x > x) ? x : g_resol.x;
+		g_resol.y = (g_resol.y > y) ? y : g_resol.y;
 		g_win_ptr = mlx_new_window(g_init_ptr, g_resol.x, g_resol.y, "cub3d");
-		//printf("x = %d y = %d\n", x, y);
 		if (argc == 3)
 			bmp_image(g_resol, &s_textus);
 		ft_render(&g_resol, &s_textus);
@@ -74,10 +78,11 @@ void	handle_player(t_resol *s_resol)
 	fov = 60 * (M_PI / 180);
 	angle = g_t_play.pov - (fov / 2);
 	x1 = -1;
-	update_dist();
+	//update_dist();
 	while (++x1 < s_resol->x)
 	{
 		y1 = -1;
+		update_dist(angle);
 		calculations(s_resol, angle, fov);
 		draw(s_resol, x1, g_walls.y_begin, y1);
 		angle += fov / s_resol->x;
@@ -101,8 +106,8 @@ void	ft_render(t_resol *s_resol, t_texs *s_text)
 	g_data.img_add = mlx_get_data_addr(g_data.img, &g_data.bpp,
 	&g_data.ll, &g_data.endian);
 	handle_player(s_resol);
-	g_t_play.rot_speed = 8 * M_PI / 180;
-	g_t_play.move_speed = 30;
+	g_t_play.rot_speed = 2.5 * M_PI / 180;
+	g_t_play.move_speed = 10;
 	mlx_hook(g_win_ptr, 2, 1L << 0, deal_key, s_resol);
 	mlx_hook(g_win_ptr, 3, 1L << 1, stop, s_resol);
 	mlx_hook(g_win_ptr, 17, 1L << 2, red_cross, (void*)0);

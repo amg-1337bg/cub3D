@@ -34,13 +34,13 @@ void	error(int i)
 
 void	initial_errors(void)
 {
-	g_errors.map_error = "MAP ERROR. PLEASE FIX IT!!";
-	g_errors.resol_error = "RESOLUTION ERROR. PLEASE FIX IT!!";
-	g_errors.text_error = "TEXTURE ERROR. PLEASE FIX IT!!";
-	g_errors.color_error = "COLOR ERROR. PLEASE FIX IT!!";
-	g_errors.arg_error = "ARGUMENTS ERROR. PLEASE FIX IT!!";
-	g_errors.file_error = "FILE NOT FOUND!!";
-	g_errors.other = "OTHER ERRORS!! PLEASE CHECK THE FILE.";
+	g_errors.map_error = "Error\nMAP ERROR. PLEASE FIX IT!!";
+	g_errors.resol_error = "Error\nRESOLUTION ERROR. PLEASE FIX IT!!";
+	g_errors.text_error = "Error\nTEXTURE ERROR. PLEASE FIX IT!!";
+	g_errors.color_error = "Error\nCOLOR ERROR. PLEASE FIX IT!!";
+	g_errors.arg_error = "Error\nARGUMENTS ERROR. PLEASE FIX IT!!";
+	g_errors.file_error = "Error\nFILE NOT FOUND!!";
+	g_errors.other = "Error\nOTHER ERRORS!! PLEASE CHECK THE FILE.";
 }
 
 void	initial_configs(void)

@@ -51,5 +51,24 @@ char	*get_path(char *line, char *texture)
 			break ;
 		}
 	}
+	check_extension(res);
 	return (res);
+}
+
+void	check_extension(char *st)
+{
+	int		len;
+	char	*must;
+	int		i;
+
+	len = ft_strlen(st);
+	must = ".xpm";
+	i = -1;
+	len -= 4;
+	while (++i < 4 && st[len] != '\0')
+	{
+		if (must[i] != st[len])
+			error(3);
+		len++;
+	}
 }

@@ -53,7 +53,7 @@ void	render_for_saving(t_resol *s_resol)
 	g_data.img = mlx_new_image(g_init_ptr, s_resol->x, s_resol->y);
 	g_data.img_add = mlx_get_data_addr(g_data.img, &g_data.bpp
 	, &g_data.ll, &g_data.endian);
-	update_dist();
+	update_dist(angle);
 	while (x1 < s_resol->x)
 	{
 		calculations(s_resol, angle, fov);
@@ -86,6 +86,8 @@ void	bmp_image(t_resol s_resol, t_texs *s_text)
 	allocation();
 	create_head(s_resol, fd, &pad);
 	handle_textures(s_text);
+	g_resol.x_tile = g_ntext.w;
+	g_resol.y_tile = g_ntext.h;
 	find_player_pos(&s_resol);
 	initial_sp(&s_resol);
 	render_for_saving(&s_resol);

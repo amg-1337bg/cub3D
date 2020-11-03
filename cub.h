@@ -39,6 +39,7 @@ typedef struct	s_sp
 	float		x;
 	float		y;
 	float		dist;
+	float		dist_fish;
 }				t_sp;
 
 typedef struct	s_resol
@@ -163,7 +164,6 @@ void			*g_init_ptr;
 void			*g_win_ptr;
 int				g_mheight;
 
-int				mlx_get_screen_size(void *mlx_ptr, int *sizex, int *sizey);
 int				check(char *string);
 char			*before_n(char *s);
 char			*after_n(char *s);
@@ -200,7 +200,7 @@ void			initial_pov(char c);
 int				sprite_tranc(int x, int y, int size);
 void			render_sp(int x, int y, int size, int i);
 void			sprites(t_resol *s_resol);
-void			get_sp_coor(t_sp *sp);
+void			get_sp_coor(t_sp *sp, float angle);
 void			swap(int f, int t);
 void			sort(void);
 void			draw(t_resol *s_resol, int x1, float y_begin, int y1);
@@ -215,7 +215,7 @@ void			change_val(int key, float *a);
 void			bmp_image(t_resol s_resol, t_texs *s_text);
 void			create_head(t_resol s_resol, int fd, int *pad);
 void			initial_configs(void);
-void			update_dist(void);
+void			update_dist(float angle);
 void			initial_sp(t_resol *s_resol);
 void			render_for_saving(t_resol *s_resol);
 void			check_colors(t_colors *colors);
@@ -245,5 +245,7 @@ void			map_hei(t_resol *s_resol, t_texs *textus,
 t_colors *colors, char *line);
 void			search_map(t_resol *s_resol, char *line);
 void			get_the_map(t_resol *s_resol, char *file);
+void			check_extension(char *st);
+int				mlx_get_screen_size(void *mlx_ptr, int *sizex, int *sizey);
 
 #endif
